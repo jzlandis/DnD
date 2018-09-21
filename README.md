@@ -1,6 +1,8 @@
 # DnD
 Tools For Basic DnD
-Reference the rules [here][1]
+
+Reference the rules [here][1].
+
 [1]: http://media.wizards.com/2016/downloads/DND/PlayerBasicRulesV03.pdf "Basic Rules"
 
 * characterInit.py
