@@ -63,7 +63,7 @@ def abilitySelection():
 							if v[0] == value2Assign:
 								abilityItems[k] = "Unassigned"
 								availableScores.append(value2Assign)
-								break					
+								break
 					availableScores.remove(value2Assign)
 					abilityItems[abilityItems.keys()[abilityIndex-1]] = (value2Assign,m[s.index(value2Assign)])
 				else: raise ValueError
@@ -81,7 +81,7 @@ def abilitySelection():
 				properInput = True
 			except (ValueError):
 				sys.stderr.write("\tImproper input, try again.\n")
-		printAbilitySelection(abilityItems)
+	printAbilitySelection(abilityItems)
 	return s,m
 def printAbilitiesAndMods(abilityScores,modifierScores):
 	sys.stderr.write("Your available scores and modifiers are as follows\n")
