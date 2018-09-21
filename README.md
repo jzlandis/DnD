@@ -2,6 +2,7 @@
 Tools For Basic DnD
 
 * characterInit.py
+
 Tryout the characterInit.py file to generate starting ability scores (per chapter 1 step 3 in the pdf)
 
 First way:
