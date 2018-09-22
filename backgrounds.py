@@ -80,15 +80,19 @@ def chooseBackgroundQualities(backgroundName):
 	    qualitiesSelected.append((q,qualities[q][int(qChoice)]))
 	    sys.stderr.write("\"%s\" has been randomly selected as your %s\n" % (qualities[q][int(qChoice)],q))
     sys.stderr.write("\nHere is a summary of your selected background qualitites.\nYou will be a %s\n" % (" ".join([x[0].upper() + x[1:] for x in backgroundName.split()])))
-    for q,qSel in qualitiesSelected:
-	sys.stderr.write("%-12s: %s\n" % (q[0].upper()+q[1:].lower(),qSel))
+    sys.stderr.write(printBackgroundQualities(qualitiesSelected))
+    return qualitiesSelected
+
+def printBackgroundQualities(qualitiesList):
+    msg = "\n"
+    ljustSize = max([len(x[0]) for x in qualitiesList]) + 1
+    for q,qSel in qualitiesList:
+	msg += str("%s: %s\n" % (str(q[0].upper()+q[1:].lower()).ljust(ljustSize+1),qSel))
+    return msg
 
 class background:
     def __init__(self):
         self.name = chooseBackground()
         self.backgroundQualities = chooseBackgroundQualities(self.name.lower())
-        #with open("./backgroundTraits.py",'r') as f:
-            #backgroundFound = False
-            #for line in f:
-                #if line.startwith("/background = "):
-
+    def __repr__(self):
+	return " ".join([x[0].upper() + x[1:].lower() for x in self.name.split()]) + '\n' +  printBackgroundQualities(self.backgroundQualities)
