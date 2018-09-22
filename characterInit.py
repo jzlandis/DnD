@@ -1,6 +1,7 @@
 #!/usr/bin/python
 
 from getAbilityScores import getAbilityScores,getPresetAbilityScores
+from backgrounds import background
 import os
 import sys
 from collections import OrderedDict
@@ -105,4 +106,5 @@ def printAbilitySelection(abilityDict):
 class character:
 	def __init__(self):
 		s,m = abilitySelection()
+		self.bkgrnd = background()
 character()

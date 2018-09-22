@@ -111,3 +111,114 @@ The people who knew me when I was young know my shameful secret, so I can never 
 I have a weakness for the vices of the city, especially hard drink.
 Secretly, I believe that things would be better if I were a tyrant lording over the land.
 I have trouble trusting in my allies
+/background = noble
+/trait
+My eloquent flattery makes everyone I talk to feel like the most wonderful and important person in the world.
+The common folk love me for my kindness and generosity.
+No one could doubt by looking at my regal bearing that I am a cut above the unwashed masses.
+I take great pains to always look my best and follow the latest fashions.
+I don’t like to get my hands dirty, and I won’t be caught dead in unsuitable accommodations.
+Despite my noble birth, I do not place myself above other folk. We all have the same blood.
+My favor, once lost, is lost forever.
+If you do me an injury, I will crush you, ruin your name, and salt your fields
+/ideal
+Respect. Respect is due to me because of my position, but all people regardless of station deserve to be treated with dignity. (Good)
+Responsibility. It is my duty to respect the authority of those above me, just as those below me must respect mine. (Lawful)
+Independence. I must prove that I can handle myself without the coddling of my family. (Chaotic)
+Power. If I can attain more power, no one will tell me what to do. (Evil)
+Family. Blood runs thicker than water. (Any)
+Noble Obligation. It is my duty to protect and care for the people beneath me. (Good)
+/bond
+I will face any challenge to win the approval of my family.
+My house’s alliance with another noble family must be sustained at all costs.
+Nothing is more important than the other members of my family.
+I am in love with the heir of a family that my family despises.
+My loyalty to my sovereign is unwavering.
+The common folk must see me as a hero of the people.
+/flaw
+I secretly believe that everyone is beneath me.
+I hide a truly scandalous secret that could ruin my family forever.
+I too often hear veiled insults and threats in every word addressed to me, and I’m quick to anger.
+I have an insatiable desire for carnal pleasures.
+In fact, the world does revolve around me.
+By my words and actions, I often bring shame to my family.
+/background = sage
+/specialty
+Alchemist
+Astronomer
+Discredited Academic
+Librarian
+Professor
+Researcher
+Wizard's Apprentice
+Scribe
+/trait
+I use polysyllabic words that convey the impression of great erudition.
+I’ve read every book in the world’s greatest libraries—or I like to boast that I have.
+I’m used to helping out those who aren’t as smart as I am, and I patiently explain anything and everything to others.
+There’s nothing I like more than a good mystery.
+I’m willing to listen to every side of an argument before I make my own judgment.
+I . . . speak . . . slowly . . . when talking . . . to idiots, . . . which . . . almost . . . everyone . . . is . . . compared . . . to me.
+I am horribly, horribly awkward in social situations.
+I’m convinced that people are always trying to steal my secrets.
+/ideal
+Knowledge. The path to power and self-improvement is through knowledge. (Neutral)
+Beauty. What is beautiful points us beyond itself toward what is true. (Good)
+Logic. Emotions must not cloud our logical thinking. (Lawful)
+No Limits. Nothing should fetter the infinite possibility inherent in all existence. (Chaotic)
+Power. Knowledge is the path to power and domination. (Evil)
+Self-Improvement. The goal of a life of study is the betterment of oneself. (Any)
+/bond
+It is my duty to protect my students.
+I have an ancient text that holds terrible secrets that must not fall into the wrong hands.
+I work to preserve a library, university, scriptorium, or monastery.
+My life’s work is a series of tomes related to a specific field of lore.
+I’ve been searching my whole life for the answer to a certain question.
+I sold my soul for knowledge. I hope to do great deeds and win it back.
+/flaw
+I am easily distracted by the promise of information.
+Most people scream and run when they see a demon. I stop and take notes on its anatomy.
+Unlocking an ancient mystery is worth the price of a civilization.
+I overlook obvious solutions in favor of complicated ones.
+I speak without really thinking through my words, invariably insulting others.
+I can’t keep a secret to save my life, or anyone else’s.
+/background = soldier
+/specialty
+Officer
+Scout
+Infantry
+Cavalry
+Healer
+Quartermaster
+Standard bearer
+Support staff (cook, blacksmith, or the like)
+/trait
+I’m always polite and respectful.
+I’m haunted by memories of war. I can’t get the images of violence out of my mind.
+I’ve lost too many friends, and I’m slow to make new ones.
+I’m full of inspiring and cautionary tales from my military experience relevant to almost every combat situation.
+I can stare down a hell hound without flinching.
+I enjoy being strong and like breaking things.
+I have a crude sense of humor.
+I face problems head-on. A simple, direct solution is the best path to success.
+/ideal
+Greater Good. Our lot is to lay down our lives in defense of others. (Good)
+Responsibility. I do what I must and obey just authority. (Lawful)
+Independence. When people follow orders blindly, they embrace a kind of tyranny. (Chaotic)
+Might. In life as in war, the stronger force wins. (Evil)
+Live and Let Live. Ideals aren’t worth killing over or going to war for. (Neutral)
+Nation. My city, nation, or people are all that matter. (Any)
+/bond
+I would still lay down my life for the people I served with.
+Someone saved my life on the battlefield. To this day, I will never leave a friend behind.
+My honor is my life.
+I’ll never forget the crushing defeat my company suffered or the enemies who dealt it.
+Those who fight beside me are those worth dying for.
+I fight for those who cannot fight for themselves.
+/flaw
+The monstrous enemy we faced in battle still leaves me quivering with fear.
+I have little respect for anyone who is not a proven warrior.
+I made a terrible mistake in battle that cost many lives—and I would do anything to keep that mistake secret.
+My hatred of my enemies is blind and unreasoning.
+I obey the law, even if the law causes misery.
+I’d rather eat my armor than admit when I’m wrong.
