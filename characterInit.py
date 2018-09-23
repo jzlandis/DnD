@@ -6,6 +6,9 @@ import os
 import sys
 from collections import OrderedDict
 import time
+from cursesWriter import cursesWriter,cursesOptionMenu,cursesSplashScreen,cursesAbilityByRand,cursesAbilityByPreset,cursesAbilityByScoreCost,cursesAssignScores
+
+MAIN_HEADER = "DnD Character Creator (written by Jeremy Landis)\n"
 
 def selectAbilityScoresByPoints():
 	points = 27
@@ -49,19 +52,11 @@ def selectAbilityScoresByPoints():
 					if not abilityItems[abilityItems.keys()[abilityIndex-1]] == "Unassigned":
 						if points + scoreCost[abilityItems[abilityItems.keys()[abilityIndex-1]][0]] >= scoreCost[value2Assign]:
 							points += scoreCost[abilityItems[abilityItems.keys()[abilityIndex-1]][0]]
-					#if not value2Assign in availableScores:
-					#	for k,v in abilityItems.items():
-					#		if v[0] == value2Assign:
-					#			abilityItems[k] = "Unassigned"
-					#			availableScores.append(value2Assign)
-					#			break
 					if scoreCost[value2Assign] > points:
 						sys.stderr.write("\tNot enough points, try again\n")
 					else:
 						points -= scoreCost[value2Assign]
 						abilityItems[abilityItems.keys()[abilityIndex-1]] = (value2Assign,generateModifier(value2Assign))
-					#availableScores.remove(value2Assign)
-					#abilityItems[abilityItems.keys()[abilityIndex-1]] = (value2Assign,m[s.index(value2Assign)])
 				else: raise ValueError
 				properInput = True
 			except (ValueError):
@@ -70,74 +65,17 @@ def selectAbilityScoresByPoints():
 	return abilityItems,"pointsSystem"
 
 def abilitySelection():
-	menuItems = [
-		{"Generate random values per ch1.3" : getAbilityScores},
-		{"Use the presets (15,14,13,12,10,8)" : getPresetAbilityScores},
-		{"Use the points system to select your abilities" : selectAbilityScoresByPoints}
-		]
-	sys.stderr.write("Select the method for choosing abilities:\n")
-	#os.system('clear')
-	for item in menuItems:
-		sys.stderr.write("[" + str(menuItems.index(item)) + "] " + item.keys()[0] + '\n')
-	properInput = False
-	while not properInput:
-		choice = raw_input("\n>>>> ")
-		try:
-			if int(choice) in range(len(menuItems)):
-				properInput = True
-				s,m = menuItems[int(choice)].values()[0]()
-			else: raise ValueError
-		except (ValueError,IndexError):
-			sys.stderr.write("\tImproper input, try again.\n")
-			pass
-	if m == "pointsSystem":
-		return s
-	printAbilitiesAndMods(s,m)
-	sys.stderr.write("Assign your ability scores and modifiers to abilities:\nAt the prompt input the index of the ability followed by the score to be assigned to it. If the score is already assigned to another ability try removing it from that one by using the negative index.\n")
-	availableScores = list(s)
-	abilityItems = OrderedDict([
-			("Strength","Unassigned"),
-			("Dexterity","Unassigned"),
-			("Constitution","Unassigned"),
-			("Intelligence","Unassigned"),
-			("Wisdom","Unassigned"),
-			("Charisma","Unassigned")
-			])
-	time.sleep(1)
-	while "Unassigned" in abilityItems.values():
-		printAbilitySelection(abilityItems)
-		properInput = False
-		sys.stderr.write("Available scores: %s\n\n" % str(list(reversed(sorted(availableScores)))))
-		while not properInput:
-			try:
-				choiceInput = raw_input(">>>> ").split()
-				if len(choiceInput) == 1 and int(choiceInput[0]) in [x*-1 for x in range(1,len(abilityItems)+1)]:
-					abilityIndex = -1*int(choiceInput[0])
-					if abilityItems[abilityItems.keys()[abilityIndex-1]] == "Unassigned":
-						sys.stderr.write("That ability isn't assigned, no change\n")
-					else:
-						availableScores.append(abilityItems[abilityItems.keys()[abilityIndex-1]][0])
-						abilityItems[abilityItems.keys()[abilityIndex-1]] = "Unassigned"
-				elif len(choiceInput) == 2:
-					abilityIndex,value2Assign = [int(x) for x in choiceInput]
-					if not value2Assign in s or not abilityIndex in range(1,len(abilityItems)+1): raise ValueError
-					if not abilityItems[abilityItems.keys()[abilityIndex-1]] == "Unassigned":
-						abilityItems[abilityItems.keys()[abilityIndex-1]] == "Unassigned"
-						availableScores.append(abilityItems[abilityItems.keys()[abilityIndex-1]][0])
-					if not value2Assign in availableScores:
-						for k,v in abilityItems.items():
-							if v[0] == value2Assign:
-								abilityItems[k] = "Unassigned"
-								availableScores.append(value2Assign)
-								break
-					availableScores.remove(value2Assign)
-					abilityItems[abilityItems.keys()[abilityIndex-1]] = (value2Assign,m[s.index(value2Assign)])
-				else: raise ValueError
-				properInput = True
-			except (ValueError):
-				sys.stderr.write("\tImproper input, try again.\n")
-	printAbilitySelection(abilityItems)
-	return abilityItems
+	title = "Select the method for choosing base ability scores:"
+	helpText = ""
+	menuChoices = [("Generate random values per ch1.3",cursesAbilityByRand),
+		       ("Use the presets (15,14,13,12,10,8)",cursesAbilityByPreset),
+		       ("Use the score-cost system to select your abilities",cursesAbilityByScoreCost)]
+	basicScores,need2assign = menuChoices[cursesOptionMenu(MAIN_HEADER,title,helpText,[x[0] for x in menuChoices])][1](MAIN_HEADER)	
+	if need2assign:
+		orderedScores = cursesAssignScores(MAIN_HEADER,basicScores)
+	else:
+		orderedScores = basicScores
+	return orderedScores
 def printAbilitiesAndMods(abilityScores,modifierScores):
 	sys.stderr.write("Your available scores and modifiers are as follows\n")
 	sys.stderr.write(" ".join(["AbilityScore".center(15,"-"),"Modifier".center(15,"-")]) + '\n')
@@ -183,7 +121,13 @@ class abilitySet:
 		return printAbilitySelection(self.abilities,mode="str")
 class character:
 	def __init__(self):
-		#self.abilities = abilitySelection()
 		self.abilities = abilitySet()
 		self.background = background()
+
+splashScreen = ""
+with open('splashScreen.txt','r') as f:
+	for line in f:
+		splashScreen += line
+
+cursesSplashScreen(splashScreen)
 me = character()
