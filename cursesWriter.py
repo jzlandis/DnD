@@ -145,7 +145,7 @@ def abilityByScoreCost(stdscr,header,title,helpText):
 				else: raise ValueError
 			except (ValueError):
 				stdscr.addstr("\tImproper input, try again.\n")
-	return abilityItems
+	return abilityItems,False
 def assignScores(stdscr,header,basicScores,title,helpText):
 	curses.echo()
 	stdscr.clear()

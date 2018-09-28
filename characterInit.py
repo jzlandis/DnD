@@ -22,11 +22,6 @@ def abilitySelection():
 	else:
 		orderedScores = basicScores
 	return orderedScores
-def printAbilitiesAndMods(abilityScores,modifierScores):
-	sys.stderr.write("Your available scores and modifiers are as follows\n")
-	sys.stderr.write(" ".join(["AbilityScore".center(15,"-"),"Modifier".center(15,"-")]) + '\n')
-	for s,m in reversed(sorted(zip(abilityScores,modifierScores),key=lambda x: x[0])):
-		sys.stderr.write(("%2d" % s).center(15) + " " + ("%2d" % m).center(15) + '\n')
 def printAbilitySelection(abilityDict,mode="stderr"):
 	if mode == "stderr":
 		i = 0
@@ -59,7 +54,6 @@ def printAbilitySelection(abilityDict,mode="stderr"):
 			i+=1
 		return msg
 	else: raise ValueError
-
 class abilitySet:
 	def __init__(self):
 		self.abilities = abilitySelection()

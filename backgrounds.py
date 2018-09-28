@@ -1,7 +1,11 @@
 #!/usr/bin/python
 
 from standardRolls import rollDie
+from cursesWriter import cursesOptionMenu
+#cursesOptionMenu(header,title,helpText,choices,indexOrigin=0):
 import sys
+
+MAIN_HEADER = "DnD Character Creator (written by Jeremy Landis)\n"
 
 def chooseBackground():
     possBackgrounds = []
@@ -9,26 +13,13 @@ def chooseBackground():
         for line in f:
             if line.startswith("/background = "):
                 possBackgrounds.append(" ".join([x[0].upper() + x[1:].lower() for x in line.replace("/background = ","").strip().split()]))
-    sys.stderr.write("\nChoose your background:\n")
-    iOuter = None
-    for i,j in enumerate(possBackgrounds):
-        sys.stderr.write("%4s %s\n" % ("["+str(i)+"]",j))
-        iOuter = i*1
-    sys.stderr.write("%4s %s\n" % ("["+str(iOuter+1)+"]","Pick at random for me"))
-    while True:
-        try:
-            choice = int(raw_input(">>>> "))
-            if not int(choice) in range(len(possBackgrounds)) and int(choice) != iOuter+1:
-                raise ValueError
-            else: break
-        except (ValueError):
-            sys.stderr.write("\tInput unacceptable, try again.\n")
-    if choice == iOuter+1:
-        choiceBackground = possBackgrounds[rollDie(len(possBackgrounds))-1]
-    else:
-        choiceBackground = possBackgrounds[choice]
-    sys.stderr.write("Your background will be \"%s\"\n\n" % choiceBackground)
-    return choiceBackground
+    possBackgrounds.append("Choose at random")
+    backgroundChoice = possBackgrounds[cursesOptionMenu(MAIN_HEADER,"Choose your background:","",possBackgrounds)]
+    if backgroundChoice == possBackgrounds[-1]:
+	backgroundChoice = possBackgrounds[rollDie(len(backgroundChoice)-2)]
+    print backgroundChoice
+    return backgroundChoice
+
 def chooseBackgroundQualities(backgroundName):
     with open("./backgroundTraits.txt",'r') as f:
         read = False
