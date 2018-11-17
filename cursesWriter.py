@@ -1,8 +1,9 @@
 #!/usr/bin/python
 
-import os,sys
-import curses
-import time
+import sys
+sys.dont_write_bytecode = True
+
+import os,curses
 from getAbilityScores import getAbilityScores,getPresetAbilityScores,generateModifier
 from collections import OrderedDict
 
@@ -19,7 +20,7 @@ def drawMenu(stdscr,title,body,previousInputs,feedbackText):
 	stdscr.addstr("%s\n" % body)
 	for i in previousInputs:
 		stdscr.addstr(">>>> %s\n" % i)
-	
+
 	stdscr.addstr(">>>> ")
 	return stdscr.getstr()
 
@@ -54,8 +55,14 @@ def splashScreenWriter(stdscr,splashScreen):
 	stdscr.clear()
 	stdscr.refresh()
 	stdscr.addstr(splashScreen)
-	stdscr.addstr("\nASCII art created with PyFiglet\nPress Any Button to Continue\n")
 	x = stdscr.getch()
+def summaryWriter(stdscr,summary):
+	curses.echo()
+	stdscr.clear()
+	stdscr.refresh()
+	stdscr.addstr(summary)
+	x = stdscr.getstr()
+	return x
 def abilityByRand(stdscr,header,title,helpText):
 	curses.echo()
 	stdscr.clear()
@@ -204,6 +211,8 @@ def cursesOptionMenu(header,title,helpText,choices,indexOrigin=0):
 	return curses.wrapper(optionMenu,header,title,helpText,choices,indexOrigin)
 def cursesSplashScreen(splashScreen):
 	return curses.wrapper(splashScreenWriter,splashScreen)
+def cursesSummary(splashScreen):
+	return curses.wrapper(summaryWriter,splashScreen)
 def cursesAbilityByRand(header,title="Generating random ability scores...",helpText=""):
 	return curses.wrapper(abilityByRand,header,title,helpText)
 def cursesAbilityByPreset(header,title="The preset scores and modifiers are as follows:",helpText=""):

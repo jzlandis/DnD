@@ -1,12 +1,13 @@
 #!/usr/bin/python
 
+import sys
+sys.dont_write_bytecode = True
+
 from getAbilityScores import getAbilityScores,getPresetAbilityScores,generateModifier
 from backgrounds import background
-import os
-import sys
 from collections import OrderedDict
-import time
-from cursesWriter import cursesWriter,cursesOptionMenu,cursesSplashScreen,cursesAbilityByRand,cursesAbilityByPreset,cursesAbilityByScoreCost,cursesAssignScores
+import pickle,os
+from cursesWriter import cursesWriter,cursesOptionMenu,cursesSplashScreen,cursesAbilityByRand,cursesAbilityByPreset,cursesAbilityByScoreCost,cursesAssignScores,cursesSummary
 
 MAIN_HEADER = "DnD Character Creator (written by Jeremy Landis)\n"
 
@@ -69,5 +70,21 @@ with open('splashScreen.txt','r') as f:
 	for line in f:
 		splashScreen += line
 
-cursesSplashScreen(splashScreen)
-me = character()
+info = ""
+if "-read" in sys.argv:
+	readFrom = open(sys.argv[sys.argv.index("-read")+1],'r')
+	me = pickle.load(readFrom)
+	readFrom.close()
+else:
+	info = "\nYou can view this character again by using -read myDnDchar.pkl on the command line\n"
+	cursesSplashScreen(splashScreen)
+	me = character()
+	dumpDest = open("myDnDchar.pkl",'w')
+	pickle.dump(me,dumpDest)
+	dumpDest.close()
+
+summary = MAIN_HEADER + "\nYour character:\n" + str(me.background) + "\n" + str(me.abilities) + info + "\nEnter x to exit\n"
+while True:
+	x = cursesSummary(summary)
+	if x == "x":
+		break
