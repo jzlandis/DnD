@@ -1,5 +1,8 @@
 # DnD
-Tools For Basic DnD
+A very simple character creator for Dungeons & Dragons.
+
+The script walks the user though assignment of base ability scores and deciding on their background
+traits. A summary is produced at the end and can be viewed again with the -read option on the command line.
 
 Reference the rules [here][1].
 
