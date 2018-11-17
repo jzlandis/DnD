@@ -72,14 +72,14 @@ with open('splashScreen.txt','r') as f:
 
 info = ""
 if "-read" in sys.argv:
-	readFrom = open(sys.argv[sys.argv.index("-read")+1],'r')
+	readFrom = open(sys.argv[sys.argv.index("-read")+1],'rb')
 	me = pickle.load(readFrom)
 	readFrom.close()
 else:
 	info = "\nYou can view this character again by using -read myDnDchar.pkl on the command line\n"
 	cursesSplashScreen(splashScreen)
 	me = character()
-	dumpDest = open("myDnDchar.pkl",'w')
+	dumpDest = open("myDnDchar.pkl",'wb')
 	pickle.dump(me,dumpDest)
 	dumpDest.close()
 
